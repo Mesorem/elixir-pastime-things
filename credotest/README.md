@@ -1,6 +1,6 @@
 # Credotest
 
-**TODO: Add description**
+Chapter 9 of erlang otp desing parsed to elixir
 
 ## Installation
 
@@ -18,4 +18,3 @@ end
 Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
 and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
 be found at [https://hexdocs.pm/credotest](https://hexdocs.pm/credotest).
-
