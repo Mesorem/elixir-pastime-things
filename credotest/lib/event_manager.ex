@@ -4,6 +4,7 @@ defmodule CredoTest.EventManager do
   """
 
   def start_link() do
+    :hello
   end
 
 end
