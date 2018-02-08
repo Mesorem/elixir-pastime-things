@@ -9,7 +9,7 @@ recivers asking for it
     GenServer.start_link(__MODULE__, list, name: __MODULE__)
   end
 
-  def distribute() do
+  def distribute do
     GenServer.call(__MODULE__, :distribute)
   end
 

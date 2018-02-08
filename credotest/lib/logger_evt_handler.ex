@@ -4,17 +4,21 @@ defmodule CredoTest.EventHandler.Logger do
   """
   use GenServer
 
-  def start_link(), do: GenServer.start_link(__MODULE__, [], [])
+  require Logger
+
+  def start_link, do: GenServer.start_link(__MODULE__, [], [])
 
   def init(_), do: {:ok, :nostate}
 
   def handle_cast(:distribution_complete, state) do
-    # interact with the logger
+    Logger.info :distribution_complete
     {:noreply, state}
   end
+
   def handle_cast(:distribution_ready, state) do
     {:noreply, state}
   end
+
   def handle_cast(_message, state), do: {:noreply, state}
 
   def handle_call(_message, _from, state), do: {:reply, {:reply, :noready}, state}
