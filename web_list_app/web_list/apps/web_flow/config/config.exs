@@ -8,15 +8,15 @@ use Mix.Config
 # if you want to provide default values for your application for
 # 3rd-party users, it should be done in your "mix.exs" file.
 
-# You can configure for your application as:
+# You can configure your application as:
 #
-#     config :xml_tryout, key: :value
+#     config :web_flow, key: :value
 #
-# And access this configuration in your application as:
+# and access this configuration in your application as:
 #
-#     Application.get_env(:xml_tryout, :key)
+#     Application.get_env(:web_flow, :key)
 #
-# Or configure a 3rd-party app:
+# You can also configure a 3rd-party app:
 #
 #     config :logger, level: :info
 #

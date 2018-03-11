@@ -1,2 +1,0 @@
-defmodule XmlTryout do
-end
