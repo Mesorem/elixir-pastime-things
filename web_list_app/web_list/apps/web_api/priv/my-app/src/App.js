@@ -5,17 +5,18 @@ import './App.css';
 
 class App extends Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      socket: new Socket("ws://localhost:4000/socket", {}),
-      ch: null
-    }
-    this.state.socket.connect();
-    this.state.ch = this.state.socket.channel("room:lobby", {})
-    this.state.ch.join()
-      .receive("ok", resp => { console.log("Joined successfully", resp) })
-      .receive("error", resp => { console.log("Unable to join", resp) })
+  socket = new Socket("ws://localhost:4000/socket", {});
+  loobyCh = this.socket.channel("room:lobby", {})
+
+  componentDidMount() {
+    this.socket.connect();
+    this.loobyCh.join()
+      .receive("ok", resp => { console.log("Joined successfully to lobby ch", resp) })
+      .receive("error", resp => { console.log("Unable to join lobby ch", resp) })
+  }
+
+  compnentWillUnmount() {
+    this.lobbyCh.leave().receive("ok", () => alert("left lobby ch!") )
   }
 
   render() {

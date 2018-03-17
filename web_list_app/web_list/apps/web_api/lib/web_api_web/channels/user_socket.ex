@@ -2,7 +2,7 @@ defmodule WebApiWeb.UserSocket do
   use Phoenix.Socket
 
   ## Channels
-  # channel "room:*", WebApiWeb.RoomChannel
+  channel "room:*", WebApiWeb.RoomChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket
