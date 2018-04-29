@@ -81,6 +81,7 @@ defmodule WebInterface.Hook do
           | {:stop, reason, new_state}
         when reply: term(), new_state: term(), reason: term(), event: term()
   def handle_call(event, _from, state) do
+    IO.inspect event
     {:reply, :pushed, [event], state}
   end
 

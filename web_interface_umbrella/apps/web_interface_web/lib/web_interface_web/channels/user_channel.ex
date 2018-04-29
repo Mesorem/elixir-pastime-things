@@ -25,6 +25,7 @@ defmodule WebInterfaceWeb.UserChannel do
   end
 
   def handle_info({:start_pusher_hook, subject}, socket) do
+    IO.inspect subject
     {:ok, pusher} = Hook.start_link(:in, subject)
     {:noreply, assign(socket, :pusher, pusher)}
   end
