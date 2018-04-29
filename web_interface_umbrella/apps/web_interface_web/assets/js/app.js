@@ -33,4 +33,6 @@ import socket from "./socket"
     .receive("ok", resp => console.log("Connected successfully to user channel. ", resp))
     .receive("error", resp => console.log("Error conncting to user channel. ", resp))
 
+  setTimeout(() => channel.push("CREATE_CHAT", {name: "test_chat", to: "test_user_"}), 3000)
+
 })();
