@@ -18,4 +18,19 @@ import "phoenix_html"
 // Local files can be imported directly using relative
 // paths "./socket" or full ones "web/static/js/socket".
 
-// import socket from "./socket"
+import socket from "./socket"
+
+(function() {
+
+  console.log('Trying to connect socket...')
+
+  socket.connect()
+  console.log('Connected successfully.')
+
+  console.log('Trying to connect to user channel...')
+  let channel = socket.channel("user:user", {})
+  channel.join()
+    .receive("ok", resp => console.log("Connected successfully to user channel. ", resp))
+    .receive("error", resp => console.log("Error conncting to user channel. ", resp))
+
+})();

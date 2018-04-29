@@ -1,5 +1,5 @@
-defmodule XYChat.X do
-  alias XYChat.X
+defmodule WebInterface.X do
+  alias WebInterface.X
 
   @type t :: %X{}
   defstruct type: nil, state: nil
