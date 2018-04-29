@@ -7,7 +7,7 @@ defmodule WebInterfaceWeb.UserChannel do
     {:ok, pid} = User.start_link(name, "password")
     send(self(), {:start_change_hook, pid})
     send(self(), {:start_pusher_hook, pid})
-    {:ok, Map.put(socket.assigns, :user, pid)}
+    {:ok, assign(socket, :user, pid)}
   end
 
   def handle_in(event, payload, socket) do
@@ -26,7 +26,7 @@ defmodule WebInterfaceWeb.UserChannel do
 
   def handle_info({:start_pusher_hook, subject}, socket) do
     {:ok, pusher} = Hook.start_link(:in, subject)
-    {:noreply, Map.put(socket.assigns, :pusher, pusher)}
+    {:noreply, assign(socket, :pusher, pusher)}
   end
 
   def handle_info(_info, socket) do
