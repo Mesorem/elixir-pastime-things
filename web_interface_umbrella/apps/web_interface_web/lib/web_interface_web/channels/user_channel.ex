@@ -24,7 +24,7 @@ defmodule WebInterfaceWeb.UserChannel do
     {:noreply, socket}
   end
 
-  def handle_info({:start_pusher_hook, pid}, socket) do
+  def handle_info({:start_pusher_hook, subject}, socket) do
     {:ok, pusher} = Hook.start_link(:in, subject)
     {:noreply, Map.put(socket.assign, :pusher, pusher)}
   end
