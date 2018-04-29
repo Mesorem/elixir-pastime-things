@@ -1,7 +1,7 @@
-defmodule WebInteface.UserChannel do
+defmodule WebInterfaceWeb.UserChannel do
   use Phoenix.Channel
 
-  alias WebInteface.{X, Hook, User}
+  alias WebInterface.{X, Hook, User}
 
   def join("user:" <> name, _message, socket) do
     {:ok, pid} = User.start_link(name, "password")
