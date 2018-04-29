@@ -62,7 +62,7 @@ defmodule WebInterface.User do
     {:noreply, [X.new(__MODULE__, new_state)], new_state}
   end
 
-  def handle_events([%Y{type: "CREATE_CHAT", payload: %{name: chat, to: to}}], _from, user) do
+  def handle_events([%Y{type: "CREATE_CHAT", payload: %{"name" => chat, "to" => to}}], _from, user) do
     Logger.info("Trigered CREATE_CHAT")
     new_state = create_chat(user, chat)
     start_chat(new_state, chat, to)
