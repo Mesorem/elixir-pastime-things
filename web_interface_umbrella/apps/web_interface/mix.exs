@@ -35,7 +35,7 @@ defmodule WebInterface.Mixfile do
   #
   # Type `mix help deps` for examples and options.
   defp deps do
-    []
+    [{:gen_stage, "~> 0.12"}]
   end
 
   # Aliases are shortcuts or tasks specific to the current project.
