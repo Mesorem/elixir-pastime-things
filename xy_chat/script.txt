@@ -1,0 +1,19 @@
+{:ok, user} = XYChat.User.start_link "adria", "lopex"
+{:ok, in_hook} = XYChat.Hook.start_link(:in, user)
+
+#{:ok, in_hook} = XYChat.Hook.io_hook(user)
+
+#{:ok, in_hook} = XYChat.Hook.start_link :in, user
+#{:ok, out_hook} = XYChat.Hook.start_link :out, user
+#GenStage.sync_subscribe(user, to: in_hook, min_demand: 0, max_demand: 1)
+#GenStage.sync_subscribe(out_hook, to: user, min_demand: 0, max_demand: 1)
+
+XYChat.Hook.push(in_hook, XYChat.Y.new("CREATE_CHAT", %{name: "my_chat", to: "adriax"}))
+
+[{pid, _, _} | _] = Enum.reverse(Map.values(:sys.get_state(user).producers))
+
+{:ok, in_hook2} = XYChat.Hook.io_hook(pid)
+
+XYChat.Hook.push(in_hook, XYChat.Y.new("SET_CHAT", "my_chat"))
+
+XYChat.Hook.push(in_hook, XYChat.Y.new("WRITTING_ON"))
