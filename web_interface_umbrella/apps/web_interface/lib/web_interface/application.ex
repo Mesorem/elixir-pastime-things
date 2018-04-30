@@ -13,7 +13,7 @@ defmodule WebInterface.Application do
     import Supervisor.Spec, warn: false
 
     Supervisor.start_link([
-      
+      {Registry, keys: :unique, name: Registry.User},
     ], strategy: :one_for_one, name: WebInterface.Supervisor)
   end
 end

@@ -13,8 +13,10 @@ defmodule WebInterface.User do
   @spec start_link(username, password) :: GenServer.on_start()
         when username: String.t(), password: String.t()
   def start_link(username, password) do
-    GenStage.start_link(__MODULE__, {username, password})
+    GenStage.start_link(__MODULE__, {username, password}, name: via_tuple(username))
   end
+
+  def via_tuple(username), do: {:via, Registry, {Registry.User, username}}
 
   #####   @callbacks
 
