@@ -40,9 +40,9 @@ defmodule WebInterface.User do
   @spec handle_events(%Y{type: type, payload: payload}, GenStage.from(), User.t()) :: tuple()
         when type: String.t(), payload: term()
 
-  def handle_events([event = %Y{type: "WRITE"}], _from, user) do
+  def handle_events([event = %Y{type: "WRITE", payload: %{"text" => text}}], _from, user) do
     Logger.info("Trigered WRITE")
-    new_state = write(user, event.payload)
+    new_state = write(user, text)
     {:noreply, [X.new(__MODULE__, new_state)], new_state}
   end
 
@@ -58,7 +58,7 @@ defmodule WebInterface.User do
     {:noreply, [X.new(__MODULE__, new_state)], new_state}
   end
 
-  def handle_events([%Y{type: "SET_CHAT", payload: chat}], _from, user) do
+  def handle_events([%Y{type: "SET_CHAT", payload: %{"chat" => chat}}], _from, user) do
     Logger.info("Trigered SET_CHAT")
     new_state = set_chat(user, chat)
     {:noreply, [X.new(__MODULE__, new_state)], new_state}

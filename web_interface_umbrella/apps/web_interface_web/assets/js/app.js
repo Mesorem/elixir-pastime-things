@@ -28,15 +28,15 @@ import socket from "./socket"
   console.log('Connected successfully.')
 
   console.log('Trying to connect to user channel...')
-  let channel = socket.channel("user:user", {})
+  let channel = socket.channel("user:adriax", {})
   channel.join()
     .receive("ok", resp => console.log("Connected successfully to user channel. ", resp))
     .receive("error", resp => console.log("Error conncting to user channel. ", resp))
 
   setTimeout(() => channel.push("CREATE_CHAT", {name: "test_chat1", to: "test_user_"}), 3000)
-  setTimeout(() => channel.push("CREATE_CHAT", {name: "test_chat2", to: "test_user_"}), 6000)
-  setTimeout(() => channel.push("CREATE_CHAT", {name: "test_chat3", to: "test_user_"}), 9000)
-  setTimeout(() => channel.push("CREATE_CHAT", {name: "test_chat4", to: "test_user_"}), 12000)
-  setTimeout(() => channel.push("CREATE_CHAT", {name: "test_chat5", to: "test_user_"}), 15000)
+  setTimeout(() => channel.push("SET_CHAT", {chat: "test_chat1"}), 6000)
+  setTimeout(() => channel.push("WRITTING_ON", {}), 9000)
+  setTimeout(() => channel.push("WRITE", {text: "text1"}), 12000)
+  setTimeout(() => channel.push("WRITTING_OFF", {}), 12000)
 
 })();

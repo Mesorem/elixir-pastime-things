@@ -22,16 +22,17 @@ defmodule WebInterface.Hook do
   """
   @spec io_hook(subject :: pid()) :: {:ok, in_pid :: pid()}
   def io_hook(subject) do
-    {:ok, _out_hook} = Hook.start_link(:out, subject)
-    {:ok, _in_hook} = Hook.start_link(:in, subject)
+    {:ok, out_hook} = Hook.start_link(:out, subject)
+    {:ok, in_hook} = Hook.start_link(:in, subject)
+    {out_hook, in_hook}
   end
 
   @doc """
     Pushes an Y.t event to an in hook
   """
-  @spec push(in_hook, event) :: :ok when in_hook: pid(), event: Y.t()
-  def push(in_hook, event) do
-    GenServer.call(in_hook, event)
+  @spec push(event, in_hook_pid) :: :ok when in_hook_pid: pid(), event: Y.t()
+  def push(event, in_hook_pid) do
+    GenServer.call(in_hook_pid, event)
   end
 
   #####   @callbacks

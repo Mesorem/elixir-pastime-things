@@ -6,9 +6,9 @@ defmodule WebInterface.Linker do
   @spec link(consumer :: pid(), producer :: pid()) :: term()
   def link(process1, process2) do
     Task.start_link(fn ->
-      {:ok, _link1} = GenStage.sync_subscribe(process1, to: process2, max_demand: 1)
-      {:ok, _link2} = GenStage.sync_subscribe(process2, to: process1, max_demand: 1)
-      :linked
+      {:ok, link1} = GenStage.sync_subscribe(process1, to: process2, min_demand: 1)
+      {:ok, link2} = GenStage.sync_subscribe(process2, to: process1, max_demand: 1)
+      {:linked, link1, link2)
     end)
   end
 

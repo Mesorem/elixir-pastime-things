@@ -1,0 +1,13 @@
+
+alias WebInterface.{User, Hook, Y} # alias
+
+# set up units processes
+# the systems is demand driven, for the events in user to be processed it has
+# to receive demand from somewhere
+{:ok, user} = User.start_link("adriax", "lopezx")
+{:ok, in_hook} = Hook.start_link(:in, user)
+{:ok, out_hook} = Hook.start_link(:out, user)
+
+# events examples
+ # create a chat
+ "CREATE_CHAT" |> Y.new(%{"name" => "test_chat", "to" => "adriax2"}) |> Hook.push(in_hook)
