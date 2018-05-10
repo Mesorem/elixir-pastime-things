@@ -64,8 +64,13 @@ defmodule WebInterface.Hook do
     {:noreply, [], state}
   end
 
-  def handle_events(events, _from, state = {:in, _}) do
-    {:noreply, events, state}
+  def handle_events([event | []], _from, state = {:out, _}) do
+    IO.inspect event
+    {:noreply, [event], state}
+  end
+
+  def handle_events(events, _from, state = {:out, _}) do
+    {:noreply, [], state}
   end
 
   @spec handle_demand(demand :: term(), state :: term()) :: tuple()
