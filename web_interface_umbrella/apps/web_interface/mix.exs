@@ -36,8 +36,7 @@ defmodule WebInterface.Mixfile do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:gen_stage, "~> 0.12"},
-      {:diet, github: "pragdave/diet"}
+      {:axis, in_umbrella: true}
     ]
   end
 

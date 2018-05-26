@@ -3,7 +3,7 @@ defmodule WebInterface.Consumer do
 
   def start_links(producer, fun) do
     {:ok, pid} = GenStage.start_link(__MODULE__, fun)
-    GenStage.sync_subscribe(pid, to: producer, max_demand: 1)
+    GenStage.sync_subscribe(pid, to: producer, min_demand: 1)
   end
 
   def init(fun) do
@@ -20,7 +20,7 @@ defmodule WebInterface.Consumer do
   end
 
   def handle_info(_info, state) do
-    { :noreply, state
+    { :noreply, state }
   end
 
 end
